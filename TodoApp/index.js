@@ -12,7 +12,7 @@ mongoose.connect(process.env.CONNECTION_STRING)
     .catch(err => console.log(err));
 
 
-// Route to get all tasks
+// Get all tasks
 app.get('/api/tasklist', async (req, res) => {
     try {
       const tasks = await Task.find();
@@ -22,6 +22,7 @@ app.get('/api/tasklist', async (req, res) => {
     }
 });
 
+// Add task
 app.post('/api/addtask', async (req, res) => {
     
     try {
@@ -32,6 +33,7 @@ app.post('/api/addtask', async (req, res) => {
     }
 })
 
+// Update task
 app.put('/api/updatetask/:id', async (req, res) => {
     
     try {
@@ -46,6 +48,7 @@ app.put('/api/updatetask/:id', async (req, res) => {
     }
 })
 
+// Delete task
 app.delete('/api/deletetask/:id', async (req, res) => {
     try {
         const {id} = req.params
@@ -59,5 +62,5 @@ app.delete('/api/deletetask/:id', async (req, res) => {
     }
 })
 
-  
+// Connection to local server 
 app.listen(3000, ()=>{ console.log("Server is running!");})
