@@ -1,10 +1,20 @@
 const express = require('express')
 const Task = require('./models/taskmodel.js')
 const mongoose = require('mongoose')
+const cors = require('cors')
 require('dotenv').config()
 const app = express()
 app.use(express.json())
 
+// Define CORS options
+const corsOptions = {
+    origin: '*', // Change this to your frontend URL in production
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  };
+
+// Middleware
+app.use(cors(corsOptions));
 
 // MongoDB connection
 mongoose.connect(process.env.CONNECTION_STRING)
@@ -63,4 +73,4 @@ app.delete('/api/deletetask/:id', async (req, res) => {
 })
 
 // Connection to local server 
-app.listen(3000, ()=>{ console.log("Server is running!");})
+app.listen(4000, ()=>{ console.log("Server is running!");})
