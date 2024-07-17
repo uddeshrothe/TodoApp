@@ -1,8 +1,8 @@
-const API_URL = 'http://localhost:4000/api';
+const API_URL = 'http://localhost:4000/api/task';
 
 export const fetchTasks = async () => {
     try {
-        const response = await fetch(API_URL + "/tasklist");
+        const response = await fetch(API_URL + "/");
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -16,7 +16,7 @@ export const fetchTasks = async () => {
 
 export const addTask = async (taskName) => {
     try {
-        const response = await fetch(API_URL + "/addTask", {
+        const response = await fetch(API_URL + "/add", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const addTask = async (taskName) => {
 
 export const deleteTask = async (taskId) => {
     try {
-        const response = await fetch(`${API_URL + "/deletetask"}/${taskId}`, {
+        const response = await fetch(`${API_URL}/${taskId}`, {
             method: 'DELETE',
         });
         if (!response.ok) {
