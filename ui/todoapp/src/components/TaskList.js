@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { fetchTasks, addTask, deleteTask } from '../services/taskService';
+import { } from '../App.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons'
+
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
@@ -48,25 +52,31 @@ const TaskList = () => {
 
     return (
         <div>
-            <h1>Task List</h1>
-            <form onSubmit={handleAddTask}>
-                <input
-                    type='text'
-                    value={taskName}
-                    onChange={(e) => setTaskName(e.target.value)}
-                    placeholder='Enter task name'
-                />
-                <button type="submit">Add Task</button>
-            </form>
-            <ul>
-                {tasks && tasks.map(task => (
-                    <li key={task._id}>
-                        <h2>{task.taskName}</h2>
-                        <button onClick={() => handleDeleteTask(task._id)}>Delete task</button>
-                    </li>
-                ))}
-            </ul>
+            <div class="container__item">
+                <form onSubmit={handleAddTask} class='form'>
+                    <input
+                        type='text'
+                        class="form__field"
+                        value={taskName}
+                        onChange={(e) => setTaskName(e.target.value)}
+                        placeholder='Enter task name'
+                    />
+                    <button type="submit" class="btn btn--primary btn--inside uppercase"><FontAwesomeIcon icon={faPlus} />  Add Task</button>
+                </form>
+            </div>
+            <div class='task-list'>
+                <ul class="custom-list">
+                    {tasks && tasks.map(task => (
+                        <li key={task._id} class="task-index">
+                            <span class='task-text'>{task.taskName} </span>
+                            <button class="delete-button" onClick={() => handleDeleteTask(task._id)}><FontAwesomeIcon icon={faTrash} /></button>
+
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
+
     );
 };
 
