@@ -27,8 +27,6 @@
   }
 }
 
-
-
 form {
   justify-content: center;
 }
@@ -117,16 +115,72 @@ form {
   flex: 1;
   text-align: left;
 }
+.task-text.completed {
+  text-decoration: line-through;
+  color: #888;
+}
 
+.custom-checkbox {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px;
+  user-select: none;
+  border-style: inherit;
+  border-radius: 6px;
+  height: 1.5rem;
+  border-color: #7f8ff4;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #347dfa;
+}
+
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox input:checked ~ .checkmark::after {
+  display: block;
+}
 
 button {
-  background: #5E5DF0;
+  background: #5e5df0;
   border-radius: 999px;
-  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-shadow: #5e5df0 0 10px 20px -10px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
-  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
@@ -145,20 +199,20 @@ button:hover {
   background-color: #7fed25;
 }
 
-.custom-list{
+.custom-list {
   list-style-type: none;
-  
+
   padding: 0;
   margin: 0 auto;
   width: max-content;
 }
-.task-index{
+.task-index {
   max-width: 500px;
   /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   border-radius: 10px;
   justify-content: center;
 }
-span{
+span {
   font-size: 25px;
   font-style: normal;
   font-family: Arial, Helvetica, sans-serif;
@@ -174,7 +228,7 @@ span{
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;

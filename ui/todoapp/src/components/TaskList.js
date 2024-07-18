@@ -47,6 +47,16 @@ const TaskList = () => {
         }
     };
 
+    const handleCheckboxChange = (index) => {
+        const newTasks = tasks.map((task, i) => {
+            if (i === index) {
+                return { ...task, completed: !task.completed };
+            }
+            return task;
+        });
+        setTasks(newTasks);
+    };
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
@@ -66,9 +76,16 @@ const TaskList = () => {
             </div>
             <div class='task-list'>
                 <ul class="custom-list">
-                    {tasks && tasks.map(task => (
+                    {tasks && tasks.map((task, index) => (
                         <li key={task._id} class="task-index">
-                            <span class='task-text'>{task.taskName} </span>
+                            <label className="custom-checkbox">
+                                <input
+                                    type="checkbox"
+                                    checked={task.completed}
+                                    onChange={() => handleCheckboxChange(index)}
+                                /><span className="checkmark"></span>
+                                </label>
+                            <span class={`task-text ${task.completed ? 'completed' : ''}`}>{task.taskName} </span>
                             <button class="delete-button" onClick={() => handleDeleteTask(task._id)}><FontAwesomeIcon icon={faTrash} /></button>
 
                         </li>
