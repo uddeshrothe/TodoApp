@@ -1,5 +1,6 @@
 const Task = require('../models/taskmodel.js')
 
+// FETCH TASKS
 const getTask = async (req, res) => {
     try {
         const tasks = await Task.find();
@@ -9,6 +10,7 @@ const getTask = async (req, res) => {
       }
 }
 
+// ADD TASK
 const addTask = async (req, res) => {
     try {
         const task = await Task.create(req.body)
@@ -18,6 +20,7 @@ const addTask = async (req, res) => {
     }
 }
 
+// DELETE TASK
 const deleteTask = async (req, res) => {
     try {
         const { id } = req.params
@@ -31,6 +34,7 @@ const deleteTask = async (req, res) => {
     }
 }
 
+// UPDATE TASK
 const updateTask = async (req, res) => {
     
     try {
