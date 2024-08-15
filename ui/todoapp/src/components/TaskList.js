@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { fetchTasks, addTask, deleteTask } from '../services/taskService';
+import { fetchTasks, addTask, deleteTask, updateTask } from '../services/taskService';
 import { } from '../App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPlus, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 
 const TaskList = () => {
@@ -10,6 +10,8 @@ const TaskList = () => {
     const [taskName, setTaskName] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [editing, setEditing] = useState(false)
+    const [currentTask, setCurrentTask] = useState({})
 
     useEffect(() => {
         const getTasks = async () => {
@@ -57,36 +59,67 @@ const TaskList = () => {
         setTasks(newTasks);
     };
 
+    const handleEditTask = (task) => {
+        console.log('Editing Task:', task);
+        setEditing(true);
+        setCurrentTask(task);
+        setTaskName(task.taskName);
+    };
+
+    const handleUpdateTask = async (e) => {
+        e.preventDefault();
+        if (!taskName) return;
+        try {
+            setEditing(false);
+            const updatedTask = { ...currentTask, taskName };
+            setTasks(tasks.map(task => task._id === updatedTask._id ? updatedTask : task));
+            try {
+                await updateTask(currentTask._id, taskName);
+            } catch (error) {
+                setTasks(tasks.map(task => task._id === currentTask._id ? currentTask : task));
+                setError(error.message);
+            } finally {
+                setTaskName('');
+            }
+        } catch (error) {
+            console.error('Error updating task:', error);
+        }
+    };
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
     return (
         <div>
-            <div class="container__item">
-                <form onSubmit={handleAddTask} class='form'>
+            <div className="container__item">
+                <form onSubmit={editing ? handleUpdateTask : handleAddTask} className='form'>
                     <input
                         type='text'
-                        class="form__field"
+                        className="form__field"
                         value={taskName}
                         onChange={(e) => setTaskName(e.target.value)}
                         placeholder='Enter task name'
                     />
-                    <button type="submit" class="btn btn--primary btn--inside uppercase"><FontAwesomeIcon icon={faPlus} />  Add Task</button>
+                    <button type="submit" className="btn btn--primary btn--inside uppercase">
+                        <FontAwesomeIcon icon={editing ? faEdit : faPlus} /> {editing ? 'Update Task' : 'Add Task'}
+                    </button>
                 </form>
             </div>
-            <div class='task-list'>
-                <ul class="custom-list">
+            <div className='task-list'>
+                <ul className="custom-list">
                     {tasks && tasks.map((task, index) => (
-                        <li key={task._id} class="task-index">
+                        <li key={task._id} className="task-index">
                             <label className="custom-checkbox">
                                 <input
                                     type="checkbox"
                                     checked={task.completed}
                                     onChange={() => handleCheckboxChange(index)}
                                 /><span className="checkmark"></span>
-                                </label>
-                            <span class={`task-text ${task.completed ? 'completed' : ''}`}>{task.taskName} </span>
-                            <button class="delete-button" onClick={() => handleDeleteTask(task._id)}><FontAwesomeIcon icon={faTrash} /></button>
+                            </label>
+                            <span className={`task-text ${task.completed ? 'completed' : ''}`}>{task.taskName} </span>
+                            <button className="edit-button" onClick={() => handleEditTask(task)}>
+                                <FontAwesomeIcon icon={faEdit} />
+                            </button>
+                            <button className="delete-button" onClick={() => handleDeleteTask(task._id)}><FontAwesomeIcon icon={faTrash} /></button>
 
                         </li>
                     ))}
