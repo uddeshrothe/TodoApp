@@ -199,6 +199,26 @@ button:hover {
   background-color: #7fed25;
 }
 
+.edit-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #6200ea;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0 5px 0 0;
+}
+
+.edit-button:hover{
+  background-color: rgb(119, 238, 95);
+}
+
 .custom-list {
   list-style-type: none;
 
@@ -225,7 +245,7 @@ span {
   color: #fff;
   background-color: #6200ea;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   display: flex;
