@@ -261,3 +261,59 @@ span {
 .delete-button:hover {
   background-color: #d90c09;
 }
+
+@media only screen and (max-width: 600px) {
+  .App {
+    padding: 0 20px; /* Further reduce padding for small screens */
+  }
+
+  .App-header {
+    font-size: calc(10px + 3vmin); /* Larger font size for small screens */
+  }
+
+  .form__field {
+    width: 100%; /* Full width input fields */
+    padding: 15px 10px; /* Adjust padding */
+  }
+
+  .task-list ul {
+    max-width: 100%; /* Full width task list */
+  }
+
+  .task-list li {
+    flex-direction: row; /* Stack items vertically */
+    align-items: flex-start; /* Align text to the left */
+  }
+
+  .task-list li:hover {
+    background-color: #f1f1f1;
+  }
+
+  .task-index {
+    max-width: 100%; /* Full width container */
+  }
+
+  .btn--primary {
+    padding: 10px 20px; /* Adjust button padding */
+    width: 100%; /* Full width button */
+    margin-left: 0.1rem;
+  }
+
+  .custom-checkbox {
+    margin-right: 0; /* Remove margin on checkboxes */
+  }
+
+  button {
+    padding: 10px; /* Adjust padding */
+    font-size: 14px; /* Reduce font size */
+  }
+
+  .edit-button, .delete-button {
+    
+    font-size: 0.8rem; /* Reduce font size */
+    margin: 0 0 10px 0; /* Add margin between buttons */
+    width: 100%; /* Full width buttons */
+    width: fit-content;
+  }
+
+}
