@@ -1,9 +1,11 @@
 const Task = require('../models/taskmodel.js')
 
+
+
 // FETCH TASKS
 const getTask = async (req, res) => {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({userId: req.user.id});
         res.status(200).json(tasks);
       } catch (err) {
         res.status(500).json({ message: err.message });
@@ -13,7 +15,11 @@ const getTask = async (req, res) => {
 // ADD TASK
 const addTask = async (req, res) => {
     try {
-        const task = await Task.create(req.body)
+        const task = new Task({
+            taskName: req.body.taskName,
+            userId: req.user.id
+        })
+        await task.save()
         res.status(200).json(task)
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -23,8 +29,7 @@ const addTask = async (req, res) => {
 // DELETE TASK
 const deleteTask = async (req, res) => {
     try {
-        const { id } = req.params
-        const task = await Task.findByIdAndDelete(id)
+        const task = await Task.findOneAndDelete({_id: req.params.id, userId:req.user.id})
         if (!task) {
             res.status(404).json({ message: "Task not found" })
         }
@@ -38,8 +43,11 @@ const deleteTask = async (req, res) => {
 const updateTask = async (req, res) => {
     
     try {
-        const {id} = req.params
-        const task = await Task.findByIdAndUpdate(id, req.body)
+        const task = await Task.findByIdAndUpdate(
+            { _id: req.params.id, userId: req.user.id },
+            req.body,
+            {new:true}
+        )
         if (!task) {
             res.status(404).json({message: "Task not found"})
         }
