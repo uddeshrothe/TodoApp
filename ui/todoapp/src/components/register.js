@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { register } from '../services/authService';
 import { Link } from 'react-router-dom';
+import '../styles/register.css'
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -19,31 +20,35 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
+        <div className='container'>
+            
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username:</label>
+            <h2>Register</h2>
+                <div className='input_box'>
                     <input
+                        className='input-field'
                         type="text"
+                        placeholder='Username'
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Email:</label>
+                <div className='input_box'>
                     <input
+                        className='input-field'
                         type="email"
+                        placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Password:</label>
+                <div className='input_box'>
                     <input
+                        className='input-field'
                         type="password"
+                        placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required

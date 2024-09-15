@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { login } from '../services/authService';
 import { Link } from 'react-router-dom';
+import '../styles/login.css'
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,28 +12,31 @@ const Login = () => {
         e.preventDefault();
         try {
             await login(email, password);
-            window.location.href = '/tasks'; // Redirect after login
+            window.location.href = '/tasks'; // Redirects to tasks after login
         } catch (error) {
             setError(error.message);
         }
     };
 
     return (
-        <div>
-            <h2>Login</h2>
+        <div className='container'>
+
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
+                <h2>Login</h2>
+                <div className='input_box'>
                     <input
+                        className='input-field'
+                        placeholder='Email'
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Password:</label>
+                <div className='input_box'>
                     <input
+                        className='input-field'
+                        placeholder='Password'
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
