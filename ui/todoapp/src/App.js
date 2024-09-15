@@ -1,20 +1,18 @@
 import React from 'react';
 import TaskList from './components/TaskList';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/login';
-import Register from './components/register';
+import { } from './App.css'
 
-const App = () => {
+function App() {
   return (
-      <Router>
-          <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/tasks" element={<TaskList />} />
-              <Route path="/" element={<Login />} /> {/* Default route */}
-          </Routes>
-      </Router>
+    <div className="App">
+      <header className="App-header">
+        <h1>Task Manager</h1>
+      </header>
+      <main>
+        <TaskList />
+      </main>
+    </div>
   );
-};
+}
 
 export default App;
