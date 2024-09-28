@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { login } from '../services/authService';
+import { Link } from 'react-router-dom';
+import '../styles/login.css'
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -17,22 +19,25 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
+        <div className='container'>
+
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
+                <h2>Login</h2>
+                <div className='input_box'>
                     <input
                         type="email"
+                        className='input-field'
+                        placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Password:</label>
+                <div className='input_box'>
                     <input
                         type="password"
+                        className='input-field'
+                        placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -41,6 +46,7 @@ const Login = () => {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button type="submit">Login</button>
             </form>
+            <p>Don't have an account? <Link to="/register">Register here</Link></p>
         </div>
     );
 };

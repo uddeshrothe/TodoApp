@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { register } from '../services/authService';
+import { Link } from 'react-router-dom';
+import '../styles/register.css'
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -18,31 +20,35 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
+        <div className='container'>
+
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username:</label>
+                <h2>Register</h2>
+                <div className='input_box'>
                     <input
                         type="text"
+                        className='input-field'
+                        placeholder='Full name'
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Email:</label>
+                <div className='input_box'>
                     <input
                         type="email"
+                        className='input-field'
+                        placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Password:</label>
+                <div className='input_box'>
                     <input
                         type="password"
+                        className='input-field'
+                        placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -51,6 +57,7 @@ const Register = () => {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button type="submit">Register</button>
             </form>
+            <p>Already have an account? <Link to="/login">Login here</Link></p>
         </div>
     );
 };
