@@ -14,6 +14,26 @@ const TaskList = () => {
     const [currentTask, setCurrentTask] = useState({})
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = '/login'; // Redirect to login if not authenticated
+        }
+
+        const getTasks = async () => {
+            try {
+                const tasksData = await fetchTasks();
+                setTasks(tasksData);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getTasks();
+    }, []);
+
+    useEffect(() => {
         const getTasks = async () => {
             try {
                 const tasksData = await fetchTasks();
