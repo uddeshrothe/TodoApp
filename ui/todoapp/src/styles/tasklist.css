@@ -27,8 +27,53 @@
   }
 }
 
-form {
+span {
+  font-size: 25px;
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+button {
+  background: #5e5df0;
+  border-radius: 99px;
+  box-shadow: #5e5df0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  height: 65px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+button:hover {
+  background-color: #7fed25;
+}
+.addField{
+  display:inline-flex
+}
+
+.container__item{
+  background: #ece2f9;
+}
+
+.form{
   justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .uppercase {
@@ -45,12 +90,13 @@ form {
   padding: 0;
   transition: all 200ms ease-in;
   cursor: pointer;
+  width: 170px;
 }
 .btn--primary {
   background: #7f8ff4;
   color: #fff;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+  border-radius: 40px;
   padding: 12px 36px;
 }
 .btn--primary:hover {
@@ -61,18 +107,17 @@ form {
   box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
 }
 .btn--inside {
-  margin-left: -50px;
+  margin-left: -25px;
 }
 
 .form__field {
   width: 360px;
   background: #fff;
-  color: #a3a3a3;
   font: inherit;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
   border: 0;
   outline: 0;
-  padding: 22px 18px;
+  padding: 22px 22px;
 }
 
 .task-list {
@@ -91,8 +136,8 @@ form {
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 100%;
-  max-width: 470px;
+  max-width: 440px;
+  ;
 }
 
 .task-list li {
@@ -100,11 +145,13 @@ form {
   justify-content: space-between;
   align-items: center;
   background-color: #fafafa;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.01rem;
   border: 1px solid #eee;
   border-radius: 4px;
   margin-bottom: 0.5rem;
   transition: background-color 0.3s ease;
+  width: auto;
+  gap:10px;
 }
 
 .task-list li:hover {
@@ -112,8 +159,11 @@ form {
 }
 
 .task-text {
+  text-align: start;
+  width: 70%;
   flex: 1;
-  text-align: left;
+  word-wrap: break-word;
+  white-space: normal;
 }
 .task-text.completed {
   text-decoration: line-through;
@@ -124,11 +174,11 @@ form {
   display: inline-block;
   position: relative;
   cursor: pointer;
-  margin-right: 10px;
+  margin-left: 5px;
   user-select: none;
   border-style: inherit;
   border-radius: 6px;
-  height: 1.5rem;
+  height: 1.7rem;
   border-color: #7f8ff4;
 }
 
@@ -170,34 +220,6 @@ form {
   display: block;
 }
 
-button {
-  background: #5e5df0;
-  border-radius: 999px;
-  box-shadow: #5e5df0 0 10px 20px -10px;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
-    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
-    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
-    "Noto Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  opacity: 1;
-  outline: 0 solid transparent;
-  padding: 8px 18px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: fit-content;
-  word-break: break-word;
-  border: 0;
-  justify-content: end;
-}
-button:hover {
-  background-color: #7fed25;
-}
 
 .edit-button {
   padding: 0.5rem 1rem;
@@ -207,12 +229,13 @@ button:hover {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  width: fit-content;
   transition: background-color 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  margin: 0 5px 0 0;
+  margin: 0;
 }
 
 .edit-button:hover{
@@ -221,7 +244,6 @@ button:hover {
 
 .custom-list {
   list-style-type: none;
-
   padding: 0;
   margin: 0 auto;
   width: max-content;
@@ -231,12 +253,6 @@ button:hover {
   /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   border-radius: 10px;
   justify-content: center;
-}
-span {
-  font-size: 25px;
-  font-style: normal;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 600;
 }
 
 .delete-button {
@@ -252,11 +268,11 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
+  margin:0;
+  margin-right:5px;
 }
 
-.delete-button i {
-  margin: 0;
-}
+
 
 .delete-button:hover {
   background-color: #d90c09;

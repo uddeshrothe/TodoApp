@@ -23,6 +23,7 @@ const Register = () => {
         <div className='container'>
 
             <form onSubmit={handleSubmit}>
+                <h1>Task It</h1>
                 <h2>Register</h2>
                 <div className='input_box'>
                     <input

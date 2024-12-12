@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchTasks, addTask, deleteTask, updateTask } from '../services/taskService';
-import { } from '../App.css'
+import '../styles/tasklist.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPlus, faEdit } from '@fortawesome/free-solid-svg-icons'
 
@@ -109,19 +109,23 @@ const TaskList = () => {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div>
+        <div className='container'>
             <div className="container__item">
+
                 <form onSubmit={editing ? handleUpdateTask : handleAddTask} className='form'>
-                    <input
-                        type='text'
-                        className="form__field"
-                        value={taskName}
-                        onChange={(e) => setTaskName(e.target.value)}
-                        placeholder='Enter task name'
-                    />
-                    <button type="submit" className="btn btn--primary btn--inside uppercase">
-                        <FontAwesomeIcon icon={editing ? faEdit : faPlus} /> {editing ? 'Update Task' : 'Add Task'}
-                    </button>
+                    <h1>Task It</h1>
+                    <div className='addField'>
+                        <input
+                            type='text'
+                            className="form__field"
+                            value={taskName}
+                            onChange={(e) => setTaskName(e.target.value)}
+                            placeholder='Enter task name'
+                        />
+                        <button type="submit" className="btn btn--primary btn--inside uppercase">
+                            <FontAwesomeIcon icon={editing ? faEdit : faPlus} /> {editing ? 'Update Task' : 'Add Task'}
+                        </button>
+                    </div>
                 </form>
             </div>
             <div className='task-list'>
@@ -139,8 +143,8 @@ const TaskList = () => {
                             <button className="edit-button" onClick={() => handleEditTask(task)}>
                                 <FontAwesomeIcon icon={faEdit} />
                             </button>
-                            <button className="delete-button" onClick={() => handleDeleteTask(task._id)}><FontAwesomeIcon icon={faTrash} /></button>
-
+                            <button className="delete-button" onClick={() => handleDeleteTask(task._id)}>
+                                <FontAwesomeIcon icon={faTrash} /></button>
                         </li>
                     ))}
                 </ul>

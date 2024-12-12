@@ -3,7 +3,6 @@ import TaskList from './components/TaskList';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/login';
 import Register from './components/register';
-import { } from './App.css'
 
 function App() {
   return (
