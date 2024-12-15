@@ -3,7 +3,7 @@ const Task = require('../models/taskmodel.js')
 // FETCH TASKS
 const getTask = async (req, res) => {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({ user: req.user._id }); // Fetch tasks for the authenticated user
         res.status(200).json(tasks);
       } catch (err) {
         res.status(500).json({ message: err.message });
@@ -13,7 +13,10 @@ const getTask = async (req, res) => {
 // ADD TASK
 const addTask = async (req, res) => {
     try {
-        const task = await Task.create(req.body)
+        const task = await Task.create({
+            ...req.body,
+            user: req.user._id // Assign the authenticated user's ID
+        });
         res.status(200).json(task)
     } catch (err) {
         res.status(500).json({ message: err.message });
