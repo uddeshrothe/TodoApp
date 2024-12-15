@@ -62,15 +62,22 @@ button {
 button:hover {
   background-color: #7fed25;
 }
-.addField{
-  display:inline-flex
+h1 {
+  flex:1;
+  text-align: center;
+}
+.addField {
+  display: inline-flex;
 }
 
-.container__item{
+.container__item {
   background: #ece2f9;
+  border-radius: 4px;
+  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+  padding: 0 30px 30px 30px;
 }
 
-.form{
+.form {
   justify-content: center;
   display: flex;
   align-items: center;
@@ -120,11 +127,29 @@ button:hover {
   padding: 22px 22px;
 }
 
+.header-out {
+  display: flex;
+  background-color:#ece2f9 ;
+  
+}
+
+.logout-button{
+  flex:2;
+  align-items: center;
+  max-width: 50px;
+  height:50px;
+}
+.logout-button:hover {
+  background-color: #d90c09;
+}
+
 .task-list {
   display: flex;
+  flex:1;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+  scroll-behavior: smooth;
 }
 
 .task-list h2 {
@@ -136,8 +161,7 @@ button:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-width: 440px;
-  ;
+  width: 500px;
 }
 
 .task-list li {
@@ -151,7 +175,7 @@ button:hover {
   margin-bottom: 0.5rem;
   transition: background-color 0.3s ease;
   width: auto;
-  gap:10px;
+  gap: 10px;
 }
 
 .task-list li:hover {
@@ -220,7 +244,6 @@ button:hover {
   display: block;
 }
 
-
 .edit-button {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
@@ -238,7 +261,7 @@ button:hover {
   margin: 0;
 }
 
-.edit-button:hover{
+.edit-button:hover {
   background-color: rgb(119, 238, 95);
 }
 
@@ -268,11 +291,9 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  margin:0;
-  margin-right:5px;
+  margin: 0;
+  margin-right: 5px;
 }
-
-
 
 .delete-button:hover {
   background-color: #d90c09;
@@ -324,12 +345,11 @@ button:hover {
     font-size: 14px; /* Reduce font size */
   }
 
-  .edit-button, .delete-button {
-    
+  .edit-button,
+  .delete-button {
     font-size: 0.8rem; /* Reduce font size */
     margin: 0 0 10px 0; /* Add margin between buttons */
     width: 100%; /* Full width buttons */
     width: fit-content;
   }
-
 }

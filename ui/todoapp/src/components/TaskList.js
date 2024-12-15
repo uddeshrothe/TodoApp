@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { fetchTasks, addTask, deleteTask, updateTask } from '../services/taskService';
 import '../styles/tasklist.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faPlus, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPlus, faEdit, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
 
 const TaskList = () => {
@@ -12,6 +13,19 @@ const TaskList = () => {
     const [error, setError] = useState(null);
     const [editing, setEditing] = useState(false)
     const [currentTask, setCurrentTask] = useState({})
+    const navigate = useNavigate({})
+
+    useEffect(() => {
+        window.history.pushState(null, '', window.location.href);
+        const handlePopState = () => {
+            window.history.pushState(null, '', window.location.href);
+        };
+        window.addEventListener('popstate', handlePopState);
+
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, []);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -19,6 +33,21 @@ const TaskList = () => {
             window.location.href = '/login'; // Redirect to login if not authenticated
         }
 
+        // Redirect user back to the current page if they attempt to navigate back
+        const redirectToCurrentPage = () => {
+            window.history.pushState(null, '', window.location.href);
+        };
+
+        // Push initial state to lock user on the page
+        window.history.pushState(null, '', window.location.href);
+        window.addEventListener('popstate', redirectToCurrentPage);
+
+        return () => {
+            window.removeEventListener('popstate', redirectToCurrentPage);
+        };
+    }, []);
+
+    useEffect(() => {
         const getTasks = async () => {
             try {
                 const tasksData = await fetchTasks();
@@ -47,6 +76,11 @@ const TaskList = () => {
 
         getTasks();
     }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Clear the token
+        navigate('/login'); // Redirect to login page
+    };
 
     const handleAddTask = async (e) => {
         e.preventDefault();
@@ -112,8 +146,14 @@ const TaskList = () => {
         <div className='container'>
             <div className="container__item">
 
-                <form onSubmit={editing ? handleUpdateTask : handleAddTask} className='form'>
+                <div className='header-out'>
                     <h1>Task It</h1>
+                    <button onClick={handleLogout} className="logout-button">
+                        <FontAwesomeIcon icon={faSignOutAlt} />
+                    </button>
+                </div>
+                <form onSubmit={editing ? handleUpdateTask : handleAddTask} className='form'>
+
                     <div className='addField'>
                         <input
                             type='text'

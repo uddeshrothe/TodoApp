@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-h1{
+h1 {
   padding: 35px 35px 0 35px;
   font-weight: 700;
   color: #6a00ff;
@@ -24,7 +24,6 @@ p {
 }
 
 form {
-  background: #ece2f9;
   width: 500px;
   display: -webkit-box;
   display: flex;
@@ -32,7 +31,6 @@ form {
   -webkit-box-direction: normal;
   flex-direction: column;
   border-radius: 10px;
-  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
   padding: 0 30px 30px 30px;
 }
 
@@ -58,7 +56,6 @@ input {
 button {
   justify-content: center;
   align-items: center;
-  margin-left: 170px;
 }
 
 .container {
